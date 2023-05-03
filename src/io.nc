@@ -15,18 +15,18 @@ public init_io ()
 /**
  * Write a line to std out.
  */
-public write_line (str: *u8, len: u32)
+public write_line (string: *u8, length: size)
 {
-    write(str, len);
+    write(string, length);
     write_line();
 }
 
 /**
  * Write a line to std out.
  */
-public write_line (c_str: *u8)
+public write_line (c_string: *u8)
 {
-    write(c_str);
+    write(c_string);
     write_line();
 }
 
@@ -35,42 +35,42 @@ public write_line (c_str: *u8)
  */
 public write_line ()
 {
-    write(c"\n", 1:32);
+    write(c"\n", 1);
 }
 
 /**
  * Write a line to std out.
  */
-public write_line (str: String)
+public write_line (string: String)
 {
-    write(str);
+    write(string);
     write_line();
 }
 
 /**
  * Write to std out.
  */
-public write (str: *u8, len: u32)
+public write (string: *u8, length: size)
 {
     let written: *u32 <: new automatic u32;
-    WriteFile(std_out, str, len, written, null);
+    WriteFile(std_out, string, u32(length), written, null);
 }
 
 /**
  * Write to std out.
  */
-public write (c_str: *u8)
+public write (c_string: *u8)
 {
-    let length: u32 <: get_c_str_length(c_str);
-    write(c_str, length);
+    write(c_string, get_c_str_length(c_string));
 }
 
 /**
  * Write to std out.
  */
-public write (str: String)
+public write (string: String)
 {
-    write(str str, str len);
+    let buffer: []u8 := string buffer;
+    write(*u8(buffer), string length);
 }
 
 extern WriteFile (hFile: Handle, lpBuffer: *u8, nNumberOfBytesToWrite: u32, lpNumberOfBytesWritten: *u32, lpOverlapped: ptr) : Bool;
