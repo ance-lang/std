@@ -1,17 +1,3 @@
-private define Handle alias ptr;
-private define Bool alias i32;
-
-private std_out: Handle; 
-
-/**
- * Initialize the IO system.
- */
-public init_io ()
-{
-    SetConsoleOutputCP(65001);
-    std_out <: GetStdHandle(4294967285:32);
-}
-
 /**
  * Write a line to std out.
  */
@@ -35,7 +21,7 @@ public write_line (c_string: *u8)
  */
 public write_line ()
 {
-    write(c"\n", 1);
+    write(c"\r\n", 2);
 }
 
 /**
@@ -53,7 +39,7 @@ public write_line (string: String)
 public write (string: *u8, length: size)
 {
     let written: *u32 <: new automatic u32;
-    WriteFile(std_out, string, u32(length), written, null);
+    WriteFile(console out, string, u32(length), written, null);
 }
 
 /**
@@ -74,5 +60,3 @@ public write (string: String)
 }
 
 extern WriteFile (hFile: Handle, lpBuffer: *u8, nNumberOfBytesToWrite: u32, lpNumberOfBytesWritten: *u32, lpOverlapped: ptr) : Bool;
-extern GetStdHandle (nStdHandle: u32) : Handle;
-extern SetConsoleOutputCP (wCodePageID: u32) : Bool;
