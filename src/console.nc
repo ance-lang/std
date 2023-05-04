@@ -3,7 +3,7 @@
  */
 public struct Console 
 {
-    public out: ptr;
+    public out: OutStream;
 }
 
 public console: Console := initialize_console();
@@ -16,10 +16,47 @@ private initialize_console () : Console
     SetConsoleOutputCP(utf8_codepage);
 
     let std_output_handle := 4294967285:32;
-    console out <: GetStdHandle(std_output_handle);
+    console out handle <: GetStdHandle(std_output_handle);
     
     return console;
 }
 
-extern GetStdHandle (nStdHandle: u32) : Handle;
-extern SetConsoleOutputCP (wCodePageID: u32) : Bool;
+/**
+ * Print to a console.
+ */
+public print (console: Console, string: String) 
+{
+    write(console out, string);
+}
+
+/**
+ * Print to a console.
+ */
+public print (console: Console, c_string: *u8) 
+{
+    write(console out, c_string);
+}
+
+/**
+ * Print a new-line to a console.
+ */
+public print_line (console: Console, string: String) 
+{
+    write_line(console out, string);
+}
+
+/**
+ * Print a new-line to a console.
+ */
+public print_line (console: Console, c_string: *u8) 
+{
+    write_line(console out, c_string);
+}
+
+/**
+ * Print a new-line to a console.
+ */
+public print_line (console: Console) 
+{
+    write_line(console out);
+}

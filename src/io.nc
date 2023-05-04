@@ -1,62 +1,79 @@
 /**
- * Write a line to std out.
+ * An output stream that can be used for write operations.
  */
-public write_line (string: *u8, length: size)
+public struct OutStream 
 {
-    write(string, length);
-    write_line();
+    public handle: ptr;
 }
 
 /**
- * Write a line to std out.
+ * Write a line to a stream.
  */
-public write_line (c_string: *u8)
+public write_line (stream: OutStream, string: *u8, length: size)
 {
-    write(c_string);
-    write_line();
+    assert string /= null;
+    
+    write(stream, string, length);
+    write_line(stream);
 }
 
 /**
- * Write a new-line to std-out.
+ * Write a line to a stream.
  */
-public write_line ()
+public write_line (stream: OutStream, c_string: *u8)
 {
-    write(c"\r\n", 2);
+    assert c_string /= null;
+    
+    write(stream, c_string);
+    write_line(stream);
 }
 
 /**
- * Write a line to std out.
+ * Write a new-line to a stream.
  */
-public write_line (string: String)
+public write_line (stream: OutStream)
 {
-    write(string);
-    write_line();
+    write(stream, c"\r\n", 2);
 }
 
 /**
- * Write to std out.
+ * Write a line to a stream.
  */
-public write (string: *u8, length: size)
+public write_line (stream: OutStream, string: String)
 {
-    let written: *u32 <: new automatic u32;
-    WriteFile(console out, string, u32(length), written, null);
+    write(stream, string);
+    write_line(stream);
 }
 
 /**
- * Write to std out.
+ * Write to a stream.
  */
-public write (c_string: *u8)
+public write (stream: OutStream, string: *u8, length: size)
 {
-    write(c_string, get_c_str_length(c_string));
+    assert string /= null;
+    if length == 0 then return;
+    
+    let written: *u32 := new automatic u32;
+    let ok := WriteFile(stream handle, string, u32(length), written, null);
+    
+    consume_last_error(ok);
+    assert written. == u32(length);
 }
 
 /**
- * Write to std out.
+ * Write to a stream.
  */
-public write (string: String)
+public write (stream: OutStream, c_string: *u8)
+{
+    assert c_string /= null;
+    write(stream, c_string, get_c_str_length(c_string));
+}
+
+/**
+ * Write to a stream.
+ */
+public write (stream: OutStream, string: String)
 {
     let buffer: []u8 := string buffer;
-    write(*u8(buffer), string length);
+    write(stream, *u8(buffer), string length);
 }
-
-extern WriteFile (hFile: Handle, lpBuffer: *u8, nNumberOfBytesToWrite: u32, lpNumberOfBytesWritten: *u32, lpOverlapped: ptr) : Bool;
