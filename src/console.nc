@@ -1,4 +1,4 @@
-/**
+/*
  * Represents an application console.
  */
 public struct Console 
@@ -21,7 +21,7 @@ private initialize_console () : Console
     return console;
 }
 
-/**
+/*
  * Print to a console.
  */
 public print (console: Console, string: String) 
@@ -29,7 +29,7 @@ public print (console: Console, string: String)
     write(console out, string);
 }
 
-/**
+/*
  * Print to a console.
  */
 public print (console: Console, c_string: *u8) 
@@ -37,7 +37,7 @@ public print (console: Console, c_string: *u8)
     write(console out, c_string);
 }
 
-/**
+/*
  * Print a new-line to a console.
  */
 public print_line (console: Console, string: String) 
@@ -45,7 +45,7 @@ public print_line (console: Console, string: String)
     write_line(console out, string);
 }
 
-/**
+/*
  * Print a new-line to a console.
  */
 public print_line (console: Console, c_string: *u8) 
@@ -53,7 +53,7 @@ public print_line (console: Console, c_string: *u8)
     write_line(console out, c_string);
 }
 
-/**
+/*
  * Print a new-line to a console.
  */
 public print_line (console: Console) 

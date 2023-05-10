@@ -1,4 +1,4 @@
-/**
+/*
  * An output stream that can be used for write operations.
  */
 public struct OutStream 
@@ -6,7 +6,7 @@ public struct OutStream
     public handle: ptr;
 }
 
-/**
+/*
  * Write a line to a stream.
  */
 public write_line (stream: OutStream, string: *u8, length: size)
@@ -17,7 +17,7 @@ public write_line (stream: OutStream, string: *u8, length: size)
     write_line(stream);
 }
 
-/**
+/*
  * Write a line to a stream.
  */
 public write_line (stream: OutStream, c_string: *u8)
@@ -28,7 +28,7 @@ public write_line (stream: OutStream, c_string: *u8)
     write_line(stream);
 }
 
-/**
+/*
  * Write a new-line to a stream.
  */
 public write_line (stream: OutStream)
@@ -36,7 +36,7 @@ public write_line (stream: OutStream)
     write(stream, c"\r\n", 2);
 }
 
-/**
+/*
  * Write a line to a stream.
  */
 public write_line (stream: OutStream, string: String)
@@ -45,7 +45,7 @@ public write_line (stream: OutStream, string: String)
     write_line(stream);
 }
 
-/**
+/*
  * Write to a stream.
  */
 public write (stream: OutStream, string: *u8, length: size)
@@ -60,7 +60,7 @@ public write (stream: OutStream, string: *u8, length: size)
     assert written. == u32(length);
 }
 
-/**
+/*
  * Write to a stream.
  */
 public write (stream: OutStream, c_string: *u8)
@@ -69,7 +69,7 @@ public write (stream: OutStream, c_string: *u8)
     write(stream, c_string, get_c_str_length(c_string));
 }
 
-/**
+/*
  * Write to a stream.
  */
 public write (stream: OutStream, string: String)
