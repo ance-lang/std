@@ -1,5 +1,5 @@
 project.name <: c"std";
 project.kind <: Package;
 project.warning_as_error_enabled <: true;
-project.opt_level <: 3;
+project.opt_level <: 0;
 project.std_excluded <: true;
