@@ -3,3 +3,4 @@ project.kind <: Package;
 project.warning_as_error_enabled <: true;
 project.opt_level <: 0;
 project.std_excluded <: true;
+project.extra_emission_enabled <: true;

@@ -170,11 +170,11 @@ public m_round (x: double, digits: u4, mode: u32) : double
 {
     assert mode == 0 or mode == 1;
     
-    let power := rounding_pow10[digits];
+    let power: double := rounding_pow10[digits];
     return m_round(x * power, mode) / power;
 }
 
-private rounding_pow10 := [double | 1.0e0d, 1.0e1d, 1.0e2d, 1.0e3d, 1.0e4d, 1.0e5d, 1.0e6d, 1.0e7d, 1.0e8d, 1.0e9d, 1.0e10d, 1.0e11d, 1.0e12d, 1.0e13d, 1.0e14d, 1.0e15d];
+private rounding_pow10 := [1.0e0d, 1.0e1d, 1.0e2d, 1.0e3d, 1.0e4d, 1.0e5d, 1.0e6d, 1.0e7d, 1.0e8d, 1.0e9d, 1.0e10d, 1.0e11d, 1.0e12d, 1.0e13d, 1.0e14d, 1.0e15d];
 
 /*
  * The mathematical function to round a number to an integer.
