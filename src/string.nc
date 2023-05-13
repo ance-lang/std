@@ -57,6 +57,44 @@ public delete_string (string: String)
     delete[] buffer;
 }
 
+/*
+ * Concatenate two strings.
+ */
+public concat_string (first: String, second: String) : String
+{
+    let total_length := first length + second length;
+    
+    let result: String;
+    
+    result buffer <: new[total_length] dynamic u8;
+    result length <: total_length;
+    
+    copy_string_buffer(first buffer, result buffer, first length);
+    let offset: diff <: deref(first length);
+    copy_string_buffer(second buffer, deref(result buffer) + offset, second length);
+    
+    return result;
+}
+
+/*
+ * Concatenate two strings.
+ */
+public concat_string (first: String, second_buffer: []u8, second_length: size) : String 
+{
+    let total_length := first length + second_length;
+    
+    let result: String;
+    
+    result buffer <: new[total_length] dynamic u8;
+    result length <: total_length;
+    
+    copy_string_buffer(first buffer, result buffer, first length);
+    let offset: diff <: first length;
+    copy_string_buffer(second_buffer, deref(result buffer) + offset, second_length);
+    
+    return result;
+}
+
 private copy_string_buffer (source: []u8, destination: []u8, length: size) 
 {
     copy_memory([]Byte(source), []Byte(destination), length);
