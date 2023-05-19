@@ -1,5 +1,30 @@
-project.name <: c"std";
-project.kind <: Package;
-project.warning_as_error_enabled <: true;
-project.opt_level <: 0;
-project.std_excluded <: true;
+public const Executable: u32 := 1:32;
+public const Package: u32 := 2:32;
+public const Library: u32 := 3:32;
+
+public struct Project 
+{
+    public name: *u8;
+    public kind: u32;
+    public public_dependencies: []*u8;
+    public private_dependencies: []*u8;
+    public libraries: []*u8;
+    public archives: []*u8;
+    public library_paths: []*u8;
+    public binary_dependencies: []*u8;
+    public opt_level: u32;
+    public warning_as_error_enabled: bool;
+    public ignoring_assert: bool;
+    public extra_emission_enabled: bool;
+    public runtime_excluded: bool;
+    public std_excluded: bool;
+}
+
+extern define_project (project: *Project) 
+{
+    project.name <: c"std";
+    project.kind <: Package;
+    project.warning_as_error_enabled <: true;
+    project.opt_level <: 0;
+    project.std_excluded <: true;
+}
