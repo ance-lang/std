@@ -75,5 +75,5 @@ public write (stream: OutStream, c_string: *u8)
 public write (stream: OutStream, string: String)
 {
     let buffer: []u8 := string buffer;
-    write(stream, *u8(buffer), string length);
+    write(stream, buffer as *u8, string length);
 }

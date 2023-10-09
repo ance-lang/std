@@ -13,7 +13,7 @@ public struct String
  */
 public new_string (string: *u8, length: size) : String
 {
-    let buffer <: []u8(string);
+    let buffer <: string as []u8;
     return new_string(buffer, length);
 }
 
@@ -97,7 +97,7 @@ public concat_string (first: String, second_buffer: []u8, second_length: size) :
 
 private copy_string_buffer (source: []u8, destination: []u8, length: size) 
 {
-    copy_memory([]Byte(source), []Byte(destination), length);
+    copy_memory(source, destination, length);
 }
 
 /*
