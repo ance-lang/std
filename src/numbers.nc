@@ -1,11 +1,11 @@
 /*
  * Convert a signed number to a string. This will use base 10.
  */
-public to_string (number: i64) : String 
+public to_string (number: s64) : String
 {
-    let base: i64 := 10;
+    let base: s64 := 10;
 
-    let max_size: size := 20; // Size is 20 because i64 can be -9223372036854775808 which is 20 characters long.
+    let max_size: size := 20; // Size is 20 because s64 can be -9223372036854775808 which is 20 characters long.
     let buffer := new[max_size] automatic u8;
     
     let first_index := max_size - 1;
@@ -65,8 +65,8 @@ public to_string (number: u64, base: u6) : String
     return new_string(buffer + start, length);
 }
 
-private const MIN_I64: i64 := -9223372036854775808:64;
-private const MAX_I64: i64 := +9223372036854775807:64;
+private const MIN_S64: s64 := -9223372036854775808:64;
+private const MAX_S64: s64 := +9223372036854775807:64;
 
 private is_digit (letter: u8) : bool
 {
@@ -98,9 +98,9 @@ private is_upper_alpha (letter: u8) : bool
 }
  
 /*
- * Parse an integer from a given string. If the string is invalid, either MIN_I64 or MAX_I64 is returned. 
+ * Parse an integer from a given string. If the string is invalid, either MIN_S64 or MAX_S64 is returned.
  */
-public parse_i64 (string: String) : i64
+public parse_s64 (string: String) : s64
 {
     let buffer: []u8 := string buffer;
     let length: size := string length;
@@ -129,7 +129,7 @@ public parse_i64 (string: String) : i64
         if base /= 10 then index <: index + 2;
     }
     
-    let cutoff: u64 := if negative then u64(MIN_I64) else u64(MAX_I64);
+    let cutoff: u64 := if negative then u64(MIN_S64) else u64(MAX_S64);
     let limit: u64 := cutoff % base;
     let cutoff: u64 := cutoff / base;
     
@@ -161,8 +161,8 @@ public parse_i64 (string: String) : i64
         index <: index + 1;
     }
     
-    if error then return if negative then MIN_I64 else MAX_I64;
-    return if negative then -i64(value) else i64(value);
+    if error then return if negative then MIN_S64 else MAX_S64;
+    return if negative then -s64(value) else s64(value);
 } 
 
 private const digits := 8"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";

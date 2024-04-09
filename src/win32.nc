@@ -1,5 +1,5 @@
 private define Handle alias ptr;
-private define Bool alias i32;
+private define Bool alias s32;
 
 private consume_last_error (ok: Bool) 
 {

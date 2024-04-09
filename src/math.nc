@@ -179,7 +179,7 @@ private rounding_pow10 := [1.0e0d, 1.0e1d, 1.0e2d, 1.0e3d, 1.0e4d, 1.0e5d, 1.0e6
 /*
  * The mathematical function to round a number to an integer.
  */
-public m_round_to_int (x: double, mode: u32) : i64
+public m_round_to_int (x: double, mode: u32) : s64
 {
     assert mode == 0 or mode == 1;
 
@@ -191,5 +191,5 @@ public m_round_to_int (x: double, mode: u32) : i64
     };
 }
 
-extern llround (x: double) : i64;
-extern llrint (x: double) : i64;
+extern llround (x: double) : s64;
+extern llrint (x: double) : s64;
