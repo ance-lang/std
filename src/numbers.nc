@@ -65,8 +65,8 @@ public to_string (number: u64, base: u6) : String
     return new_string(buffer + start, length);
 }
 
-private const MIN_S64: s64 := -9223372036854775808:64;
-private const MAX_S64: s64 := +9223372036854775807:64;
+private cmp MIN_S64: s64 := -9223372036854775808:64;
+private cmp MAX_S64: s64 := +9223372036854775807:64;
 
 private is_digit (letter: u8) : bool
 {
@@ -165,4 +165,4 @@ public parse_s64 (string: String) : s64
     return if negative then -s64(value) else s64(value);
 } 
 
-private const digits := 8"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+private cmp digits := 8"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";

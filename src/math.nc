@@ -1,7 +1,7 @@
 /*
  * The mathematical constant PI.
  */
-public const PI: double := 3.14159265358979323846d;
+public cmp PI: double := 3.14159265358979323846d;
 
 /*
  * A synonym for PI.
@@ -11,7 +11,7 @@ public π: double := PI;
 /*
  * The mathematical constant E.
  */
-public const E: double := 2.71828182845904523536d;
+public cmp E: double := 2.71828182845904523536d;
 
 /*
  * A synonym for E.
@@ -21,7 +21,7 @@ public 𝑒: double := E;
 /*
  * Not a Number.
  */
-public NAN: double := 0.0d / 0.0d; 
+public cmp NAN: double := 0.0d / 0.0d; 
 
 public is_nan (x: double) : bool { return x /= x; }
 
@@ -136,12 +136,12 @@ public m_sign (x: double) : double { return if is_nan(x) then NAN else m_copysig
 /*
  * On midpoint, round away from zero.
  */
-public const MidpointRounding_AwayFromZero: u32 := 0:32;
+public cmp MidpointRounding_AwayFromZero: u32 := 0:32;
 
 /*
  * On midpoint, round to the nearest even number. Also known as banker's rounding.
  */
-public const MidpointRounding_ToEven: u32 := 1:32;
+public cmp MidpointRounding_ToEven: u32 := 1:32;
 
 /*
  * Rounds a number to the nearest integer.
