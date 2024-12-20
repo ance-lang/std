@@ -68,7 +68,7 @@ public to_string (number: u64, base: u6) : String
 private cmp MIN_S64: s64 := -9223372036854775808:64;
 private cmp MAX_S64: s64 := +9223372036854775807:64;
 
-private is_digit (letter: u8) : bool
+private cmp is_digit (letter: u8) : bool
 {
     return match letter with
     {
@@ -77,7 +77,7 @@ private is_digit (letter: u8) : bool
     };
 }
 
-private is_lower_alpha (letter: u8) : bool
+private cmp is_lower_alpha (letter: u8) : bool
 {
     return match letter with
     {
@@ -87,7 +87,7 @@ private is_lower_alpha (letter: u8) : bool
     };
 }
 
-private is_upper_alpha (letter: u8) : bool
+private cmp is_upper_alpha (letter: u8) : bool
 {
     return match letter with
     {

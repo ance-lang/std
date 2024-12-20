@@ -6,7 +6,7 @@ public cmp PI: double := 3.14159265358979323846d;
 /*
  * A synonym for PI.
  */
-public π: double := PI;
+public cmp π: double := PI;
 
 /*
  * The mathematical constant E.
@@ -16,14 +16,14 @@ public cmp E: double := 2.71828182845904523536d;
 /*
  * A synonym for E.
  */
-public 𝑒: double := E;
+public cmp 𝑒: double := E;
 
 /*
  * Not a Number.
  */
 public cmp NAN: double := 0.0d / 0.0d; 
 
-public is_nan (x: double) : bool { return x /= x; }
+public cmp is_nan (x: double) : bool { return x /= x; }
 
 /*
  * The mathematical function sine.
